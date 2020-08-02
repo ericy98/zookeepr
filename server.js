@@ -6,8 +6,12 @@ const path = require('path');
 
 // parse string/array data
 app.use(express.urlencoded({ extended: true }));
+
 // parse JSON data
 app.use(express.json());
+
+// middleware instruct server to make public folder avaliable (HTML/CSS/JS)
+app.use(express.static('public'));
 
 const { animals } = require('./data/animals');
 const e = require('express');
@@ -93,6 +97,12 @@ app.get('/api/animals/:id', (req, res) => {
     }
 
 });
+
+// respond with HTML page to display
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
 
 app.post('/api/animals', (req, res) => {
     // id based on next index of array
