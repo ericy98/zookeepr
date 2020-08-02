@@ -27,17 +27,17 @@ const handleAnimalFormSubmit = event => {
   const animalObject = { name, species, diet, personalityTraits };
 
   fetch('/api/animals', {
-    method: 'POST', 
+    method: 'POST',
     headers: {
-      Accept: 'applications/json',  
+      Accept: 'applications/json',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(animalObject)
   })
-    .then (response => {
+    .then(response => {
       if (response.ok) {
         return response.json();
-      } 
+      }
       alert('Error: ' + response.statusText);
     })
     .then(postResponse => {
